@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+    <script src='js/konva.min.js'></script>
+    <script>
+        window.onload=function(){
+            var width=innerWidth;
+            var height=innerHeight;
+
+            var stage=new Konva.Stage({
+                container:'container',
+                width:width,
+                height:height
+            })
+            var layer=new Konva.Layer()
+//            1绘制第一个大圆
+            var bgCircle = new Konva.Circle({
+                x: stage.width() / 2,
+                y: stage.height() / 2,
+                radius: 388/2,
+                dash:[5,5],
+                opacity:.6,
+                stroke:'#ccc'
+            });
+//            2绘制第二个大圆
+            var ctCircle = new Konva.Circle({
+                x: stage.width() / 2,
+                y: stage.height() / 2,
+                radius: 246/2,
+                dash:[8,4],
+                opacity:.1,
+                stroke:'#000'
+            });
+//            2绘制第三个大圆
+            var smCircle = new Konva.Circle({
+                x: stage.width() / 2,
+                y: stage.height() / 2,
+                radius: 226/2,
+                dash:[8,4],
+                opacity:.2,
+                stroke:'#000'
+            });
+//            2绘制最中心的实心圆
+            var fullCircle = new Konva.Circle({
+                x: stage.width() / 2,
+                y: stage.height() / 2,
+                radius: 120/2,
+                fill:"#2A3466",
+            });
+//            2绘制圆环
+            var bgRing = new Konva.Ring({
+                x: stage.width() / 2,
+                y: stage.height() / 2,
+                innerRadius: 120/2,
+                outerRadius: 160/2,
+                fill: '#ccc',
+                opacity:.3
+            });
+//            4文字
+            var simpleText = new Konva.Text({
+                x: stage.width() / 2-55,
+                y: stage.height() / 2-10,
+                width:120,
+                text: '全栈工程师',
+                fontSize: 20,
+                fontFamily: 'Calibri',
+                fill: 'white',
+                alien:'center'
+            });
+            layer.add(bgCircle);
+            layer.add(ctCircle);
+            layer.add(smCircle);
+            layer.add(fullCircle);
+            layer.add(bgRing);
+            layer.add(simpleText);
+            stage.add(layer);
+
+        }
+    </script>
+</head>
+<body>
+<div id="container"></div>
+
+
+</body>
+</html>

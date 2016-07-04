@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+    <script src="js/konva.min.js"></script>
+    <script>
+        window.onload = function(){
+            //得到舞台的宽高
+            var width = window.innerWidth;
+            var height = window.innerHeight;
+
+            //设置坐标系水平方向上的最大距离
+            var maxWidht = 3 / 4 * width;
+            var maxHeight = 2 / 4 * height;
+
+            //1.0舞台
+            var stage = new Konva.Stage({
+                container: "container",
+                width: width,
+                height: height
+            });
+            //2.0创建层
+            var layer = new Konva.Layer();
+
+            //3.0画底线
+            var Line = new Konva.Line({
+                points: [ 1 / 8 * stage.width(), 3 / 4 * stage.height(), 1 / 8 * stage.width() + maxWidht , 3 / 4 * stage.height()],
+                stroke: 'skyblue',
+                strokeWidth: 1,
+                lineCap: 'round',
+                lineJoin: 'round'
+            });
+            //4.0画柱状图
+            var data = [
+                { name: 'html5,css3', value: .9, color: 'blue'},
+                { name: 'jQuery',     value: .8, color: 'red'},
+                { name: 'Javascript', value: .85, color: 'orange'},
+                { name: 'canvas',     value: .7, color: 'navy'},
+                { name: 'webApp',     value: .7, color: 'green'},
+                { name: 'bootstript', value: .6, color: 'purple'}
+            ];
+            var length=maxWidht/data.length
+            for(var i=0;i<data.length;i++){
+                var rect=new Konva.Rect({
+                    x:1 / 8 * stage.width()+(1/4+i)*length,
+//                    y:3 / 4 * stage.height()-data[i].value*maxHeight,
+                    y:3 / 4 * stage.height(),
+                    width:1/2*length,
+//                    height:data[i].value*maxHeight,
+                    height:0,
+                    fill:data[i].color,
+                    cornerRadius:5
+                })
+                var textTop=new Konva.Text({
+                    x:1 / 8 * stage.width()+ i * length,
+                    y:3 / 4 * stage.height()-data[i].value*maxHeight-20,
+                    text: data[i].value*100+"%",
+                    fontSize: 18,
+                    fontFamily: 'Calibri',
+                    fill: data[i].color,
+                    width:length,
+                    align: "center"
+                })
+                var textBottom=new Konva.Text({
+                    x:1 / 8 * stage.width()+(1/4+i)*length,
+                    y:3 / 4 * stage.height(),
+                    text: data[i].name,
+                    fontSize: 18,
+                    fontFamily: 'Calibri',
+                    fill: data[i].color,
+                    width:1/2*length,
+                    align: "center",
+                    rotation:30
+                })
+                layer.add(rect)
+                layer.add(textTop)
+                layer.add(textBottom)
+                var tween1=new Konva.Tween({
+                    node:rect,
+                    duration:2,
+                    y:3/4 * stage.height()-data[i].value*maxHeight,
+                    height:data[i].value*maxHeight,
+                })
+                tween1.play()
+            }
+            layer.add(Line)
+            stage.add(layer)
+        }
+    </script>
+</head>
+<body>
+<div id='container'></div>
+
+</body>
+</html>

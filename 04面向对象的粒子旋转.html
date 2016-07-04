@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+    <script src='js/konva.min.js'></script>
+    <script src='js/lizi.js'></script>
+    <script>
+        window.onload=function(){
+            var width=innerWidth;
+            var height=innerHeight;
+            var stage=new Konva.Stage({
+                container:'container',
+                width:width,
+                height:height
+            })
+            var layer=new Konva.Layer()
+            /*创建三个组*/
+            var centerx=width/2
+            var centery=height/2
+            var bggroup=new Konva.Group({
+                x:0,
+                y:0
+            })
+            var animationRight=new Konva.Group({
+                x:centerx,
+                y:centery
+            })
+            var animationLeft=new Konva.Group({
+                x:centerx,
+                y:centery
+            })
+//            1绘制第一个大圆
+            var bgCircle = new Konva.Circle({
+                x: stage.width() / 2,
+                y: stage.height() / 2,
+                radius: 388/2,
+                dash:[5,5],
+                opacity:.6,
+                stroke:'#ccc'
+            });
+//            2绘制第二个大圆
+            var ctCircle = new Konva.Circle({
+                x: stage.width() / 2,
+                y: stage.height() / 2,
+                radius: 246/2,
+                dash:[8,4],
+                opacity:.1,
+                stroke:'#000'
+            });
+//            2绘制第三个大圆
+            var smCircle = new Konva.Circle({
+                x: stage.width() / 2,
+                y: stage.height() / 2,
+                radius: 226/2,
+                dash:[8,4],
+                opacity:.2,
+                stroke:'#000'
+            });
+//            2绘制最中心的实心圆
+            var fullCircle = new Konva.Circle({
+                x: stage.width()/ 2,
+                y: stage.height()/ 2,
+                radius: 120/2,
+                fill:"#2A3466",
+            });
+//            2绘制圆环
+            var bgRing = new Konva.Ring({
+                x: stage.width() / 2,
+                y: stage.height() / 2,
+                innerRadius: 120/2,
+                outerRadius: 160/2,
+                fill: '#ccc',
+                opacity:.3
+            });
+//            4文字
+            var simpleText = new Konva.Text({
+                x: stage.width() / 2-55,
+                y: stage.height() / 2-10,
+                width:120,
+                text: '全栈工程师',
+                fontSize: 20,
+                fontFamily: 'Calibri',
+                fill: 'white',
+                alien:'center'
+            });
+            bggroup.add(bgCircle);
+            bggroup.add(ctCircle);
+            bggroup.add(smCircle);
+            bggroup.add(fullCircle);
+            bggroup.add(bgRing);
+            bggroup.add(simpleText);
+            /*绘制小的圆圈*/
+            var css3=new lizi({
+                x:Math.cos(90*Math.PI/180)*113,
+                y:Math.sin(90*Math.PI/180)*113,
+                innerRadius:70/2,
+                outerRadius:80/2,
+                innerColor:'red',
+                outerColor:'#ccc',
+                innerOpacity:.7,
+                outerOpacity:.3,
+                color:'white',
+                text:'css3',
+                fontSize:16
+            })
+            css3.addToGroupOrLayer(animationRight)
+            var html5=new lizi({
+                x:Math.cos(180*Math.PI/180)*113,
+                y:Math.sin(180*Math.PI/180)*113,
+                innerRadius:70/2,
+                outerRadius:80/2,
+                innerColor:'red',
+                outerColor:'#ccc',
+                innerOpacity:.7,
+                outerOpacity:.3,
+                color:'white',
+                text:'html5',
+                fontSize:16
+            })
+            html5.addToGroupOrLayer(animationRight)
+            var jQuery=new lizi({
+                x:Math.cos(270*Math.PI/180)*113,
+                y:Math.sin(270*Math.PI/180)*113,
+                innerRadius:70/2,
+                outerRadius:80/2,
+                innerColor:'red',
+                outerColor:'#ccc',
+                innerOpacity:.7,
+                outerOpacity:.3,
+                color:'white',
+                text:'jQuery',
+                fontSize:16
+            })
+            jQuery.addToGroupOrLayer(animationRight)
+            var nodeJs=new lizi({
+                x:Math.cos(360*Math.PI/180)*113,
+                y:Math.sin(360*Math.PI/180)*113,
+                innerRadius:70/2,
+                outerRadius:80/2,
+                innerColor:'red',
+                outerColor:'#ccc',
+                innerOpacity:.7,
+                outerOpacity:.3,
+                color:'white',
+                text:'nodeJs',
+                fontSize:16
+            })
+            nodeJs.addToGroupOrLayer(animationRight)
+            var canvas=new lizi({
+                x:Math.cos(60*Math.PI/180)*194,
+                y:Math.sin(60*Math.PI/180)*194,
+                innerRadius:70/2,
+                outerRadius:80/2,
+                innerColor:'red',
+                outerColor:'#ccc',
+                innerOpacity:.7,
+                outerOpacity:.3,
+                color:'white',
+                text:'canvas',
+                fontSize:16
+            })
+            canvas.addToGroupOrLayer(animationLeft)
+            var rectJs=new lizi({
+                x:Math.cos(144*Math.PI/180)*194,
+                y:Math.sin(144*Math.PI/180)*194,
+                innerRadius:70/2,
+                outerRadius:80/2,
+                innerColor:'red',
+                outerColor:'#ccc',
+                innerOpacity:.7,
+                outerOpacity:.3,
+                color:'white',
+                text:'rectJs',
+                fontSize:16
+            })
+            rectJs.addToGroupOrLayer(animationLeft)
+            var ZpotoJs=new lizi({
+                x:Math.cos(216*Math.PI/180)*194,
+                y:Math.sin(216*Math.PI/180)*194,
+                innerRadius:70/2,
+                outerRadius:80/2,
+                innerColor:'red',
+                outerColor:'#ccc',
+                innerOpacity:.7,
+                outerOpacity:.3,
+                color:'white',
+                text:'ZpotoJs',
+                fontSize:16
+            })
+            ZpotoJs.addToGroupOrLayer(animationLeft)
+            var angularJs=new lizi({
+                x:Math.cos(288*Math.PI/180)*194,
+                y:Math.sin(288*Math.PI/180)*194,
+                innerRadius:70/2,
+                outerRadius:80/2,
+                innerColor:'red',
+                outerColor:'#ccc',
+                innerOpacity:.7,
+                outerOpacity:.3,
+                color:'white',
+                text:'angularJs',
+                fontSize:16
+            })
+            angularJs.addToGroupOrLayer(animationLeft)
+            var webApp=new lizi({
+                x:Math.cos(0*Math.PI/180)*194,
+                y:Math.sin(0*Math.PI/180)*194,
+                innerRadius:70/2,
+                outerRadius:80/2,
+                innerColor:'red',
+                outerColor:'#ccc',
+                innerOpacity:.7,
+                outerOpacity:.3,
+                color:'white',
+                text:'webApp',
+                fontSize:16
+            })
+            webApp.addToGroupOrLayer(animationLeft)
+            layer.add(bggroup)
+            layer.add(animationRight)
+            layer.add(animationLeft)
+            var persendangle=60
+            var anim = new Konva.Animation(function(frame) {
+                var temple=persendangle*frame.timeDiff/1500
+                animationLeft.rotate(-temple)
+                animationLeft.getChildren().each(function(item,index){
+                    item.rotate(temple)
+                })
+                var temple1=persendangle*frame.timeDiff/1000
+                animationRight.rotate(-temple1)
+                animationRight.getChildren().each(function(item,index){
+                    item.rotate(temple1)
+                })
+            }, layer);
+            anim.start();
+            stage.add(layer);
+            layer.on('mouseover',function(){
+                persendangle=10
+            })
+            layer.on('mouseout',function(){
+                persendangle=120
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="container"></div>
+</body>
+</html>

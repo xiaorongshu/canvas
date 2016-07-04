@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/konva.min.js"></script>
+    <script>
+        window.onload = function(){
+            width=innerWidth;
+            height=innerHeight
+            //舞台
+            var stage = new Konva.Stage({
+                container: "container",
+                width: window.innerWidth,
+                height: window.innerHeight
+            });
+            //layer
+            var layer = new Konva.Layer();
+            //
+            var data = [{
+                name: "前端",
+                value: .25,
+                color: '#e0e'
+            },{
+                name: "php",
+                value: .2,
+                color: 'orange'
+            },{
+                name: "UI",
+                value: .3,
+                color: 'blue'
+            },{
+                name: "C++",
+                value: .05,
+                color: 'green'
+            },{
+                name: "游戏",
+                value: .1,
+                color: 'purple'
+            },{
+                name: "Java",
+                value: .1,
+                color: 'red'
+            }];
+            var rotate = 0;
+            var radius = 100;
+            for(var i=0;i<data.length;i++){
+                var wedge = new Konva.Wedge({
+                    x: stage.width() / 2,
+                    y: stage.height() / 2,
+                    radius: radius,
+                    angle: 0,
+                    fill: data[i].color,
+                    rotation: rotate
+                });
+                var partTextangle=rotate+1/2*data[i].value*360
+                var x=stage.width() / 2+Math.cos(partTextangle*Math.PI/180)*(radius+20)
+                var y=stage.height() / 2+Math.sin(partTextangle*Math.PI/180)*(radius+20)
+                var simpleText = new Konva.Text({
+                    x: x,
+                    y: y,
+                    text: data[i].name+' '+data[i].value*100+'%',
+                    fontSize: 12,
+                    fontFamily: 'Calibri',
+                    fill: data[i].color
+                });
+                if(partTextangle>90&&partTextangle<270){
+                    var width=simpleText.width();
+                    var x=simpleText.x()
+                    simpleText.x(x-width)
+                }
+                rotate+=data[i].value*360
+                layer.add(wedge);
+                layer.add(simpleText);
+//                创建动画
+                var tween = new Konva.Tween({
+                    node: wedge,
+                    duration: 1,
+                    angle:data[i].value*360
+                });
+                tween.play()
+            }
+            stage.add(layer);
+        }
+
+
+    </script>
+</head>
+<body>
+<div id="container"></div>
+</body>
+</html>

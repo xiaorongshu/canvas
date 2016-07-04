@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+    <script src='js/konva.min.js'></script>
+    <script>
+        window.onload=function(){
+            var width=innerWidth;
+            var height=innerHeight;
+
+            var stage=new Konva.Stage({
+                container:'container',
+                width:width,
+                height:height
+            })
+            var lay=new Konva.Layer()
+            var rect=new Konva.Rect({
+                x:100,
+                y:100,
+                width:200,
+                height:200,
+                fill:'red',
+                stroke:'blue',
+                opacity:0.3,
+                cornerRadius:30
+            })
+            lay.add(rect)
+            stage.add(lay)
+
+            var tween= new Konva.Tween({
+                node:rect,
+                duration:5,
+                x:300,
+                y:300,
+                width:200,
+                height:200,
+                fill:'red',
+              stroke:'blue',
+                opacity:1,
+                draggable:true,
+                cornerRadius:100
+            })
+            tween.play()
+        }
+    </script>
+</head>
+<body>
+<div id="container">
+
+</div>
+
+
+</body>
+</html>

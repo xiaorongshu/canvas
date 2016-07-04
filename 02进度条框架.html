@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #F0F0F0;
+        }
+    </style>
+    <script src='js/konva.min.js'></script>
+    <script>
+        window.onload=function(){
+            var  width=window.innerWidth;
+            var height=window.innerHeight;
+            var sta=new Konva.Stage({
+                container:'cont',
+                width:width,
+                height:height
+            });
+            var lay=new Konva.Layer()
+            var group=new Konva.Group()
+            var rect=new Konva.Rect({
+                x:1/8*sta.width(),
+                y:1/2*sta.height(),
+                width:3/4*sta.width(),
+                height:30,
+                stroke: "skyblue",
+                cornerRadius:20,
+            });
+            var rect1=new Konva.Rect({
+                x:1/8*sta.width(),
+                y:1/2*sta.height(),
+                width:0,
+                height:30,
+                fill: "red",
+                cornerRadius:20,
+            });
+            group.add(rect);
+            group.add(rect1);
+            lay.add(group);
+            sta.add(lay);
+            var tween=new Konva.Tween({
+                node:rect1,
+                duration:5,
+                fill: "red",
+                width:3/4*sta.width()
+            })
+            tween.play()
+        }
+    </script>
+</head>
+<body>
+<!--<div id='div1'></div>-->
+<div id="cont"></div>
+</body>
+</html>
